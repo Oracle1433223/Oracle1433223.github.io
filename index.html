@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <!-- Font Awesome 6 (免费版本) 用于图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f6fa;   /* 柔和背景 */
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #1e293b;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 主卡片 */
+        .profile-card {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.1), 0 10px 15px -6px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-card:hover {
+            transform: scale(1.01);
+        }
+
+        /* 头像区域 */
+        .avatar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .avatar-icon {
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 8px 20px -6px #3b82f633;
+        }
+
+        .avatar-icon i {
+            font-size: 5rem;
+            color: #2563eb;   /* 清爽蓝色 */
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .badge {
+            background: #e2e8f0;
+            color: #334155;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0.5rem 0 0.3rem;
+        }
+
+        .university {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .university i {
+            color: #2563eb;
+            font-size: 1.1rem;
+        }
+
+        .bio {
+            max-width: 550px;
+            margin: 1rem auto 0;
+            font-size: 1.1rem;
+            color: #334155;
+            background: #f8fafc;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #cbd5e1;
+            margin: 2rem 0 1.8rem;
+        }
+
+        /* 各部分标题 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title i {
+            color: #2563eb;
+            font-size: 1.8rem;
+            background: #e0f2fe;
+            padding: 0.4rem;
+            border-radius: 14px;
+        }
+
+        /* 技能标签 */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-tag {
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid #bfdbfe;
+            transition: all 0.15s;
+            box-shadow: 0 2px 5px #dbeafe70;
+        }
+
+        .skill-tag:hover {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* 项目列表 */
+        .project-list {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .project-item {
+            background: #f9f9fc;
+            border-radius: 1.5rem;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #2563eb;
+            box-shadow: 0 4px 8px #e2e8f0;
+            transition: 0.2s;
+        }
+
+        .project-item:hover {
+            background: white;
+            box-shadow: 0 12px 20px -12px #2563eb70;
+        }
+
+        .project-title {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .project-title i {
+            color: #2563eb;
+            font-size: 1.4rem;
+            background: white;
+            padding: 0.3rem;
+            border-radius: 10px;
+        }
+
+        .project-desc {
+            color: #334155;
+            margin-left: 2.2rem;  /* 与图标对齐 */
+            font-size: 1rem;
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+            margin-left: 2.2rem;
+        }
+
+        .stack-tag {
+            background: #e2e8f0;
+            padding: 0.25rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* 联系区域 */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f4f9;
+            padding: 1.4rem 2rem;
+            border-radius: 60px;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1rem;
+            color: #1e293b;
+        }
+
+        .contact-item i {
+            font-size: 1.6rem;
+            color: #2563eb;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted transparent;
+            transition: border-color 0.2s;
+        }
+
+        .contact-item a:hover {
+            border-bottom: 1px dotted #2563eb;
+            color: #2563eb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-links a {
+            color: #475569;
+            font-size: 2rem;
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #2563eb;
+            transform: scale(1.15);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+        }
+
+        /* 移动端调整 */
+        @media (max-width: 650px) {
+            .profile-card {
+                padding: 1.8rem;
+            }
+            .name {
+                font-size: 2rem;
+            }
+            .bio {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .contact-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+                border-radius: 30px;
+            }
+            .social-links {
+                align-self: center;
+            }
+            .project-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <!-- 头像 & 基础信息 -->
+        <div class="avatar-section">
+            <div class="avatar-icon">
+                <i class="fas fa-user-graduate"></i>   <!-- 本科生毕业帽图标，更贴合学生 -->
+            </div>
+            <h1 class="name">戴明浩</h1>
+            <span class="badge"><i class="far fa-calendar-alt" style="margin-right: 4px;"></i>2023-2027</span>
+            <div class="university">
+                <i class="fas fa-university"></i>  南京邮电大学 · 信息安全专业
+            </div>
+            <div class="bio">
+                <i class="fas fa-quote-left" style="color:#2563eb; opacity:0.7; margin-right:6px;"></i>  
+                
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- 技能部分 (可替换为自己的) -->
+        <div class="section-title">
+            <i class="fas fa-cog"></i>
+            <span>技术栈 & 工具</span>
+        </div>
+        <div class="skills-container">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">computer vision</span>
+            <span class="skill-tag">deep learning</span>
+            <span class="skill-tag">Git & GitHub</span>
+        </div>
+        <!-- 项目经验 (本科生常见项目) -->
+        <div class="section-title" style="margin-top: 2rem;">
+            <i class="fas fa-laptop-code"></i>
+            <span>项目经历</span>
+        </div>
+
+        <!-- 联系与社交  -->
+        <div class="section-title">
+            <i class="fas fa-address-card"></i>
+            <span>联系我</span>
+        </div>
+        <div class="contact-section">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="b23041629@njupt.edu.cn">b23041629@njupt.edu.cn</a>   <!-- 替换为真实邮箱 -->
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-pin"></i>
+                <span>南京</span>
+            </div>
+        </div>
+</body>
+</html>
